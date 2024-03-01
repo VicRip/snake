@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ *
+ * @author acous
+ */
 public class BoardScreen extends JPanel {
 
     /**
@@ -36,26 +40,42 @@ public class BoardScreen extends JPanel {
     JButton go;
     JButton quit;
 
+    /**
+     *
+     */
     public void quitButtonActionListener() {
         if (JOptionPane.showConfirmDialog(this, "Are you sure?") == JOptionPane.OK_OPTION) {
             System.exit(0);
         }
     }
 
+    /**
+     *
+     */
     public void goButtonActionListener() {
         mw.showCard("Two");
-        //mw.setBoard();
         mw.resetAll();
     }
 
+    /**
+     *
+     * @param m
+     */
     public void setMaxPlayers(int m) {
         maxPlayers = m;
     }
 
+    /**
+     *
+     * @return
+     */
     public int returnMaxPlayers() {
         return maxPlayers;
     }
 
+    /**
+     *
+     */
     public void setUpPlayers() {
         players = new ArrayList<Player>();
         for (int i = 0; i < returnMaxPlayers(); i++) {
@@ -76,6 +96,10 @@ public class BoardScreen extends JPanel {
 
     }
 
+    /**
+     *
+     * @param mw
+     */
     public BoardScreen(MainWindow mw) {
         this.mw = mw;
 
@@ -98,8 +122,8 @@ public class BoardScreen extends JPanel {
 
         players = new ArrayList<Player>();
         players.add(new Player(currPlayer));
-        //for(int i = 0;i < returnMaxPlayers();i++)
-        //    players.add(new Player(i));
+
+
         //get and add player(s) names
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -108,7 +132,7 @@ public class BoardScreen extends JPanel {
 
         bd = new BoardDrawing(x, y, this);
         bd.setVisible(true);
-        //bd.setSize(getSize());
+
 
         int sw = getSize().width;
         int sh = getSize().height;
@@ -125,8 +149,8 @@ public class BoardScreen extends JPanel {
         stats.add(go);
         stats.add(quit);
 
-        //String playername = "Player 1";
-        //currPlayer = 0;
+
+
         whichPlayer = new JLabel();
         whichPlayer.setText(players.get(currPlayer).getName());
         stats.add(whichPlayer);
@@ -146,9 +170,9 @@ public class BoardScreen extends JPanel {
                 int a = die.nextInt(6) + 1;
                 dieResults.setText("You rolled a " + a);
                 player += a;
-                //bd.setPlayer(player);
+
                 bd.setPlayer(a, currPlayer);
-                //bd.ensurePlayerPosition();
+
                 extraInfo.setText(bd.ensurePlayerPosition(currPlayer));
                 bd.repaint();
 
@@ -167,7 +191,7 @@ public class BoardScreen extends JPanel {
                     currPlayer += 1;
                 }
 
-                //currPlayer = players.size() - 1;
+
                 whichPlayer.setText(players.get(currPlayer).getName());
 
             }
